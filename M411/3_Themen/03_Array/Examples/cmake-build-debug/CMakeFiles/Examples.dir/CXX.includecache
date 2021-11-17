@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/ENK/Documents/gibz_aufgaben/M411/3_Themen/03_Array/Examples/FunkArraysApp.cpp
+stdio.h
+-
+
+C:/Users/ENK/Documents/gibz_aufgaben/M411/3_Themen/03_Array/Examples/StringEinAusgabe.cpp
+stdio.h
+-
+
+C:/Users/ENK/Documents/gibz_aufgaben/M411/3_Themen/03_Array/Examples/Ueberlauf.cpp
+stdio.h
+-
+
