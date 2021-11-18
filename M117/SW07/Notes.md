@@ -1,4 +1,4 @@
-# Notes
+# Network Nots
 
 ## Unicast
 
@@ -37,3 +37,7 @@ Table in which says which IP belongs to which MacAddr
 * in den alten Zeiten, als noch Hubs benutzt wurden, gab es solche
 * wenn auf Layer 1 mehrere Packets gesendet, können kolidieren
     * wie bei Wifi -> alle Geräte gleiches Medium (Luft)
+
+### Aufgabe Domains
+
+![](.assets/Domains_Aufgabe.png)
