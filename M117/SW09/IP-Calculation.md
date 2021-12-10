@@ -6,23 +6,28 @@
 	* anzahl nullen am schluss = /(nullen in Hostanteil v. Subnetzmaske)
 * Hostanteil:
 	* übertragen auf Ip Adresse, ab Hostanteil
+
 ## Get Host Part: (Hostanteil)
 * alle 255 sind gleich 8, danach Zahl in Binär
 * 1-en am Anfang zählen + die Anzahl 255 * 8
-* Nullen danach zählen = /(zahl)
+	* => `/(zahl)`
+
 ## Number of ip adresses in Network:
 * take every number of subnet and convert to binary, octal
 	* 255 = 1111 1111
 	* 0 = 0000 0000
 		then count all the 0s
 * 2^(no. zeroes)
+
 ## Calculate Netz-ID: 
 * Ip Addresse in binär
 * Host Anteil mit nullen ersetzen
 * then calculate Network part in decimal
+
 ## Calculate Host ID:
-* Everything in Network Part is zero
-* then calculate what Hostpart equals in decimal
+* Everything in Host Part is zero (in Binary)
+* everything in network part is normal
+
 ## Calculate Broadcast:
 * Hostanteil, alles zu eins
 	
