@@ -9,7 +9,7 @@
 * [X] IP Adress-Klassen
 * [X] Schreibweisen von Subnetmasken (Prefix)
 * [X] Private Adressbereiche
-* Bestimmen von gültigen IP Adressen
+* [X] Bestimmen von gültigen IP Adressen
 * [X] Berechnen oder Bestimmen von Netz ID, Host ID, Anzahl Host, Broadcast, Anzahl mögliche Subnetz
 * [X] IP Subnetting
 * [X] IPv6 Adresse kürzen
