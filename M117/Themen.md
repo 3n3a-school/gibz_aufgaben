@@ -41,6 +41,37 @@ Subnetting helps by getting the router to decide, according to subnets, to which
 3. tadahhh!!
 -->
 
+**Subnetting**
+
+1. In the Host-Id part of an IP, each subnet has 32 IPs
+
+```
+Subnet 
+192.168.5.0 
+ 
+192.168.5.32
+
+192.168.5.64 
+
+192.168.5.96 
+
+192.168.5.128 
+
+192.168.5.160 
+
+192.168.5.192
+
+192.168.5.224 
+```
+2. So there are 8 possible subnets for each subnet-mask (can be done otherwise)
+3. for calculating broadcast look below
+```
+Subnet         Broadcast
+192.168.5.0 -> 192.168.5.0+31
+```
+
+#### Calculations
+
 **Calculation Net-ID**
 
 1. Host-ID part of IP Address in binary, replace with 0's
@@ -108,4 +139,5 @@ Subnetting helps by getting the router to decide, according to subnets, to which
   * [Notes](SW07/Notes.md)
 * [SW09 - IP Rechnen](SW09/IP-Calculation.md)
 * [SW10 - IPv6](SW10/IPv6.md)
-* [IP Adressrechner - Heise.de](https://www.heise.de/netze/tools/netzwerkrechner/)
+* [IP Adressrechner - Heise.de (Easy)](https://www.heise.de/netze/tools/netzwerkrechner/)
+* [IP Adresscalc (Advanced)](http://jodies.de/ipcalc)
