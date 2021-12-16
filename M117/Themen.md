@@ -141,3 +141,19 @@ Subnet         Broadcast
 * [SW10 - IPv6](SW10/IPv6.md)
 * [IP Adressrechner - Heise.de (Easy)](https://www.heise.de/netze/tools/netzwerkrechner/)
 * [IP Adresscalc (Advanced)](http://jodies.de/ipcalc)
+
+## Prüfung 3 (6 Jan)
+
+### Lernziele
+
+* [Berechtigung Windows](SW11/Notes.md)
+* [Freigaben, Sicherheit, Versteckte und Administrative Freigaben](SW11/Notes.md)
+* Sichere Passwörter
+* Troubleshooting Netzwerk
+* NAT/PAT
+* ARP Ablauf
+
+### Stoff
+
+* [SW11](SW11)
+* [SW12](SW12)
