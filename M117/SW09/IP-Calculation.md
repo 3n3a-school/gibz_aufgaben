@@ -17,7 +17,7 @@
 	* 255 = 1111 1111
 	* 0 = 0000 0000
 		then count all the 0s
-* 2^(no. zeroes)
+* 2^(no. zeroes in host-id-part)
 
 ## Calculate Netz-ID: 
 * Ip Addresse in binär
