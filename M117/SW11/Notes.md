@@ -17,3 +17,16 @@
 * "Freigabe" ist Berechtigung über Netzwerk (SMB)
 * Kopieren & Einfügen: Berechtigung von Zielsystem
 * Ausschneiden & Einfügen: Berechtigung von Anfangsort
+* Versteckte Freigabe:
+    1. Advanced Sharing in Sharing
+    2. Hinter "Share Name": dollarzeichen
+    3. Bedeutet diese Freigabe ist _versteckt_
+    4. Damit darauf zugegriffen werden kann muss Name wissen
+* Administrative Freigaben:
+    1. Computer Managment > Shared Folders > Shares
+    2. {Admin$, C$, E$ ...} -> verschiedene verstecke Freigaben
+    3. Windows installiert, gibt es C-Laufwerk automatisch dem Administrator "frei"
+* Berechtigungen überprüfen:
+    1. Properties > Security > Advanced Security > Auditing
+    2. Auswerten wer hat Zugriff
+    3. Log machen von Zugriffen
