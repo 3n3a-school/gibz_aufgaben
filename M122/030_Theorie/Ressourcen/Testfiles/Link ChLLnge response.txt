@@ -1,0 +1,9 @@
+http://de.wikipedia.org/wiki/Challenge-Response-Authentifizierung
+http://www.cryptoshop.com/index.php
+http://www.starstormdesign.de/passwort-vergessen-funktion-challenge-response-verfahren-teil-1/
+http://www.staff.uni-mainz.de/pommeren/Kryptologie/Klassisch/1_Monoalph/knownplain.html
+
+
+http://www.cryptoshop.com/index.php
+Challenge Response: Knowledge Base: Authentisierung: Wissen - Passworte: (unten -> Challange Response) 
+Hashwert: Knowledge Base: PKI: Digitale Signatur 

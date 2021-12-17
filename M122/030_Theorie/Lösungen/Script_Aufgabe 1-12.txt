@@ -1,0 +1,20 @@
+lp 1: update-help
+2:  get-help Get-Service -detailed
+    get-help Get-Service -full
+    get-help Get-Service -examples
+3: Get-Command -ParameterName *Verb
+4: get-help get-process -Examples
+5: get-command import*
+6: Get-Service | Get-Member
+7: a) get-help Get-Module -Examples  oder
+   a) get-command get-module -syntax
+   b) get-help Get-PSDrive -Examplesget
+   c) get-help Get-Date -Parameter format
+8: get-help get-history
+   get-help get-process
+   get-help get-PSProvider
+9: Get-module |Get-Member
+10: Get-help *start*  -> start-service
+11: get-process | Sort-Object Cpu -Descending | select -First 10
+12: get-service | Sort-Object status -Descending | select Name , Status
+    Get-Service | Sort-Object -Property status | Select-Object -Property Status, Name
