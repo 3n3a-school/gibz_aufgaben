@@ -148,10 +148,11 @@ Subnet         Broadcast
 
 * [Berechtigung Windows](SW11/Notes.md)
 * [Freigaben, Sicherheit, Versteckte und Administrative Freigaben](SW11/Notes.md)
-* Sichere Passwörter
-* Troubleshooting Netzwerk
-* NAT/PAT
-* ARP Ablauf
+* [Sichere Passwörter](SW12/Notes.md)
+* [Troubleshooting Netzwerk](SW12/toubleshoot.png)
+* [NAT/PAT](SW12/Notes.md)
+  * [Youtube Video](https://youtu.be/A8dl1wqUhSE)
+* [ARP Ablauf](https://youtu.be/ttgXMAvkJfo)
 
 ### Stoff
 
