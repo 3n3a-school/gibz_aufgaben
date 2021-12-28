@@ -147,6 +147,7 @@ Subnet         Broadcast
 ### Lernziele
 
 * [Berechtigung Windows](SW11/Notes.md)
+  * [MindMap](SW11/../SW12/MindMap%20Berechtigung.PNG)
 * [Freigaben, Sicherheit, Versteckte und Administrative Freigaben](SW11/Notes.md)
 * [Sichere Passwörter](SW12/Notes.md)
 * [Troubleshooting Netzwerk](SW12/toubleshoot.png)
