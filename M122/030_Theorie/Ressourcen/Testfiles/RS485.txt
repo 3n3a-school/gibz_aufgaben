@@ -1,0 +1,12 @@
+RS422- und RS485-Schnittstellen sind für die serielle Hochgeschwindigkeits-Datenübertragung über große Entfernungen entwickelt worden und finden im industriellen Bereich zunehmend Verbreitung.
+
+Die seriellen Daten werden ohne Massebezug als Spannungsdifferenz zwischen zwei korrespondierenden Leitungen übertragen. Für jedes zu übertragende Signal existiert ein Aderpaar, das aus einer invertierten und einer nicht invertierten Signalleitung besteht. Die invertierte Leitung wird in der Regel durch den Index "A" oder "-" gekennzeichnet, während die nicht invertierte Leitung mit "B" oder "+" bezeichnet wird.
+
+RS422-Verbindung
+
+Der Empfänger wertet lediglich die Differenz zwischen beiden Leitungen aus, so daß Gleichtakt-Störungen auf der Übertragungsleitung nicht zu einer Verfälschung des Nutzsignals führen. Durch die Verwendung von abgeschirmtem, paarig verseiltem Level-5-Kabel lassen sich Datenübertragungen über Distanzen von bis zu 1200 Metern bei einer Geschwindigkeit von bis zu 100.000 Baud realisieren.
+
+RS422-Sender stellen unter Last Ausgangspegel von +/- 2Volt zwischen den beiden Ausgängen zur Verfügung; die Empfängerbausteine erkennen Pegel von +/- 200mV noch als gültiges Signal.
+
+
+scs

@@ -1,0 +1,1 @@
+﻿Get-ChildItem | group-object extension |sort-object count -descending
