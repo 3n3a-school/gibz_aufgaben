@@ -3,25 +3,29 @@ namespace GeoFigures
 {
     public class Coordinate
     {
-        public float X;
-        public float Y;
+        public float X {get;set;}
+        public float Y {get;set;}
 
-        public Coordinate(float X, float Y) {
-            X = X;
-            Y = Y;
+        public Coordinate(float _x, float _y) {
+            X = _x;
+            Y = _y;
         }
     }
 
     public abstract class Figure
     {
-        public Coordinate location {get;set;}
-        private int _scaleFactor;
+        protected Coordinate location {get;set;}
+        protected int _scaleFactor;
 
-        public Figure( float X = 100.0, float Y = 100.0 ) {
-            location = new Coordinate(X, Y);
+        public Figure( float x = 100f, float y = 100f ) {
+            location = new Coordinate(x, y);
         }
 
-        public abstract void PrintPosition();
+        public virtual void PrintPosition() {
+            Console.WriteLine($"Figure Upper Left Point: X: {location.X} Y: {location.Y}");
+        }
+
+        public abstract void PrintArea();
     }
 
     public class Rect : Figure
@@ -40,19 +44,19 @@ namespace GeoFigures
                 _height = Math.Abs(value);
         }}
 
-        public Rect(float SideLength): base() {
-            Width = SideLength;
-            Height = SideLength;
+        public Rect(float sideLength): base() {
+            Width = sideLength;
+            Height = sideLength;
         }
 
-        public Rect(float Width, float Height): base() {
-            Width = Width;
-            Height = Height;
+        public Rect(float width, float height): base() {
+            Width = width;
+            Height = height;
         }
 
-        public Rect(float X, float Y, float Width = 100f, float Height = 100f): base(X, Y) {
-            Width = Width;
-            Height = Height;
+        public Rect(float x, float y, float width = 100f, float height = 100f): base(x, y) {
+            Width = width;
+            Height = height;
         }
 
         private Coordinate CalculateLowerRightPoint() {
@@ -61,10 +65,23 @@ namespace GeoFigures
 
         public override void PrintPosition()
         {
-            Coordinate upperleft = location;
+            base.PrintPosition();
             Coordinate lowerright = CalculateLowerRightPoint();
-            Console.WriteLine($"Rectangle Upper Left Point: X: {upperleft.X} Y: {upperleft.Y}");
             Console.WriteLine($"Rectangle Lower Right Point: X: {lowerright.X} Y: {lowerright.Y}");
+        }
+
+        public override void PrintArea()
+        {
+            float area = Width * Height;
+            Console.WriteLine($"Rectangle Area {area} Scale Factor {_scaleFactor}");
+        }
+    }
+
+    public class Triangle : Figure {
+        protected new int _scaleFactor;
+        public override void PrintArea()
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -94,12 +111,31 @@ namespace GeoFigures
             Coordinate middlepoint = CalculateMiddlepoint();
             Console.WriteLine($"Circle Middlepoint: X: {middlepoint.X} Y: {middlepoint.Y}");
         }
+
+        public override void PrintArea()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class Program
     {
         public static void Main(string[] args) {
+            Circle c1 = new Circle(50);
+            c1.PrintPosition();
 
+            Circle c2 = new Circle(50, 50, 99);
+            c2.PrintPosition();
+
+            Rect r1 = new Rect(50);
+            r1.PrintPosition();
+
+            Rect r2 = new Rect(34, 45);
+            r2.PrintPosition();
+            r2.PrintArea();
+
+            Rect r3 = new Rect(34, 45, 99, 88);
+            r3.PrintPosition();
         }
     }
 }
