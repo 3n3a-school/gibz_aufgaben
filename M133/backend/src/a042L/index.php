@@ -34,7 +34,7 @@ if (array_key_exists('username', $_POST) && array_key_exists('password', $_POST)
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
         :root {
-            --animation-time: 0.1s;
+            --animation-time: 10s;
         }
         body {
             font-family: 'Comic Neue', cursive;
@@ -105,21 +105,9 @@ if (array_key_exists('username', $_POST) && array_key_exists('password', $_POST)
 </head>
 <body>
     <div class="main">
-        <h1>Login</h1>
-        <form action="./" method="POST">
-            <div class="field">
-                <label for="username">Username</label>
-                <input type="text" name="username" placeholder="Enter your Username...">
-            </div>
-            <div class="field">
-                <label for="password">Password</label>
-                <input type="password" name="password">
-            </div>
-            
-            <button>Login</button>
-        </form>
-
-        <?= $auth_successful ? "Lmao secret" : "Please enter a password" ?>
+        <?php $auth_successful ? 
+        include("home.php") : 
+        include("login.php"); ?>
     </div>
 </body>
 </html>
