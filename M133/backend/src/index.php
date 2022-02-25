@@ -1,9 +1,14 @@
 <?php
 
-$random_ass_text = "your mom fukcing gay";
+// PHP - Router: https://github.com/bramus/router
+require __DIR__ . '/lib/Router.php';
+$router = new \Bramus\Router\Router();
 
-?>
+header('X-Powered-By: eServer');
 
+$router->get('/', function() {
+    $random_ass_text = "Hello there world" . date("Y-M-D");
+    echo <<<EOF
 <!doctype html>
 <html>
 <head>
@@ -13,7 +18,11 @@ $random_ass_text = "your mom fukcing gay";
 </head>
 <body>
   <h1 class="text-3xl font-bold underline">
-    Hello world!
+    $random_ass_text
   </h1>
 </body>
 </html>
+EOF;
+});
+
+$router->run();
