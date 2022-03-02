@@ -16,4 +16,10 @@ public class RoundingTest
     {
         nc.RoundUp(12.5f).Should().Be(13);
     }
+
+    [Fact]
+    public void RoundDown()
+    {
+        nc.RoundDown(12.5f).Should().Be(12);
+    }
 }
