@@ -2,3 +2,30 @@
 
 Polymorphism, inheritance etc.
 
+## Difference Between `new` and `override`
+
+* new: überdecken
+* override: überschreiben
+* superclass's implementaiton kann mit `base.<name>` aufgerufen werden
+* methode der superklasse muss `virtual` modifer haben
+
+---
+
+### Bsp _new_ und _override_:
+* Bsp Verdeckung: https://gitlab.com/gibz-informatik/infawu2021/m226a-contactdata/-/blob/main/InternalPerson.cs
+* Bsp OVerride : https://gitlab.com/gibz-informatik/infawu2021/m226a-contactdata/-/blob/main/ExternalPerson.cs
+
+Wenn Deklaration = Instantzierung, dann wird in eine Methode X, der Superklasse, mit virtual, direkt gesprungen und ausgeführt, bei _new_ und _override_. 
+
+Wenn Deklaration [Superklasse] = Instanzierung [Subklasse], dann, wird nur _override_ einer Subklasse ausgeführt, aber nicht bei _new_.
+
+### Definitions
+
+**new**: forced den Compiler, dass gleichnahmige Methode wie in Parentclass existieren soll.
+
+**override**: reimplementiert explizit eine Methode der Parentklasse.
+
+## Deklaration und Instanzierung
+
+* üblich gleich deklariert wie instanziert
+* `<deklarations-typ> perosn = new <instanzierungs-typ>();` 
