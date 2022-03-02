@@ -65,18 +65,21 @@ namespace ContactManagment
 
     public class Program
     {
-        public void PrintPersonInfos(ref InternalPerson person) {
-            PropertyInfo[] properties = typeof(person).GetProperties();
-            foreach (PropertyInfo property in properties)
+        public void PrintPersonInfos(Person p) {
+            string[] fields = new string[] {
+                "FirstName",
+                "LastName"
+            };
+
+            foreach (string field in fields)
             {
-                Console.WriteLine("{0} - type {1}", property,
-                    property.GetType().Name);
+                Console.WriteLine($"{field}: {p.GetField(field)}");
             }
         }
         public static void Main(string[] args) {
             InternalPerson internalPerson = new();
             ExternalPerson externalPerson = new();
-            PrintPersonInfos(ref internalPerson);
+            PrintPersonInfos(internalPerson);
         }
     }
 }

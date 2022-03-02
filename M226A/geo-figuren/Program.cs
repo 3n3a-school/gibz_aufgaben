@@ -78,7 +78,7 @@ namespace GeoFigures
     }
 
     public class Triangle : Figure {
-        protected new int _scaleFactor;
+        protected new double _scaleFactor;
         public override void PrintArea()
         {
             throw new NotImplementedException();
