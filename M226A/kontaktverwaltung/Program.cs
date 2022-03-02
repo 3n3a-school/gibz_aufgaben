@@ -1,9 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Reflection;
-
-namespace ContactManagment
+﻿namespace ContactManagment
 {
     public enum Gender
     {
@@ -42,11 +37,30 @@ namespace ContactManagment
 
     public class ContactData {
         public ContactTypes PrimaryOption {get;set;}
-        public int PrimaryOptionIndex {get;set;}
+        public int[] PrimaryOptionIndexes {get;set;} = new int[] {0,0,0};
 
         public List<Email> Emails {get;set;}
         public List<Phonenumber> Phonenumbers {get;set;}
         public List <Address> Addresses {get;set;}
+
+        
+        // Gets the PrimaryOption's Primary Contact Oprtion 😎
+        public object GetPrimary() {
+            switch (PrimaryOption)
+            {
+                case ContactTypes.Email:
+                    return Emails[PrimaryOptionIndexes[0]];
+                
+                case ContactTypes.Phonenumber:
+                    return Phonenumbers[PrimaryOptionIndexes[1]];
+                
+                case ContactTypes.Address:
+                    return Addresses[PrimaryOptionIndexes[2]];
+                
+                default:
+                    return null;
+            }
+        }
     }
 
     public class Person
@@ -79,7 +93,6 @@ namespace ContactManagment
                 Gender = Gender.Female,
                 ContactOptions = new ContactData() {
                     PrimaryOption = ContactTypes.Email,
-                    PrimaryOptionIndex = 0,
                     Addresses = new List<Address>() {
                         new Address() {
                             City = "Lucerne",
