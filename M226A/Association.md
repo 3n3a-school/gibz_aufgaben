@@ -73,3 +73,57 @@ classDiagram
         +depart_train()
     }        
 ```
+
+### Code Beispiel C#
+
+```c#
+using System;
+
+namespace ModelEarth {
+    enum TrainType {
+        HighSpeed,
+        InterCity,
+        Commuter,
+        RapidTransport
+    }
+    
+    public class Engine {
+        int _torque;
+        bool _direction;
+        
+        public bool Turn();
+    }
+    
+    public class Seat {
+        int _width;
+        int _comfortLevel;
+    }
+    
+    public class PassengerFigurime {
+        public string Name {get; set;}
+        public string Occupation {get; set;}
+    }
+
+    public class ModelTrain {
+        public string Name {get; set;}
+        public TrainType Type {get; set;}
+        public RailroadCar[] Wagons {get; set;} // not a train without any wagons
+        private PassengerFigurime[] _passengers; // 0 or more passengers, can move in and out of train
+    }
+    
+    public class RailroadCar {
+        int _weight;
+        int _length;
+    }
+    
+    public class Locomotive : RailroadCar {
+        Engine _engine;
+        // control panel etc.
+    }
+    
+    public class Coach : RailroadCar {
+        Seat[] _seats;
+        public int readonly NumberOfSeats;
+    }
+}
+```
