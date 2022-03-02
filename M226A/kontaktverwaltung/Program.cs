@@ -37,7 +37,7 @@
 
     public class ContactData {
         public ContactTypes PrimaryOption {get;set;}
-        public int[] PrimaryOptionIndexes {get;set;} = new int[] {0,0,0};
+        public int[] PrimaryOptionIndexes {get;set;} = new int[3] {0,0,0};
 
         public List<Email> Emails {get;set;}
         public List<Phonenumber> Phonenumbers {get;set;}
