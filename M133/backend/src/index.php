@@ -2,12 +2,19 @@
 
 // PHP - Router: https://github.com/bramus/router
 require __DIR__ . '/lib/Router.php';
+require __DIR__ . '/lib/Functions.php';
+
 $router = new \Bramus\Router\Router();
 
 header('X-Powered-By: eServer');
 
 $router->get('/', function() {
-    $random_ass_text = "Hello there world" . date("Y-M-D");
+    $title = "Willkommen im M133 - ENK";
+    $date = date("D M. Y");
+    $exercises = list_dirs(__DIR__);
+
+    $exercises_html = create_html_list($exercises);
+
     echo <<<EOF
 <!doctype html>
 <html>
@@ -17,9 +24,17 @@ $router->get('/', function() {
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <h1 class="text-3xl font-bold underline">
-    $random_ass_text
-  </h1>
+  <div class="grid grid-rows-1 grid-cols-1 place-items-center h-screen">
+    <div>
+      <h1 class="text-3xl text-center font-bold underline">
+        $title
+      </h1>
+      <p class="text-center">$date</p>
+
+      <h2 class="text-2xl my-2">Aufgaben</h2>
+      $exercises_html
+    </div>
+  </div>
 </body>
 </html>
 EOF;

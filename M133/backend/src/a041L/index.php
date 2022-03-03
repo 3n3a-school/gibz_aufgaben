@@ -7,8 +7,8 @@ $colors = [
     "purple",
     "blue"
 ];
-$selected_color = (int)$_POST['color'];
-$color = array_key_exists("color", $_POST) ?  $colors[$selected_color]: "white";
+$selected_color = array_key_exists("color", $_POST) ? (int)$_POST['color'] : null;
+$color = !empty($selected_color) ?  $colors[$selected_color]: "white";
 $err_msg = "Please select a color.";
 
 ?>
