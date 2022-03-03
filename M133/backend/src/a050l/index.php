@@ -8,9 +8,9 @@ function umrechnung($number) {
 
     $out = "
     <p>
-    Umrechnung der Dezimalzahl $number:
-    ins Binärsystem: $binary_number
-    ins Hexadezimalsystem: $hex_number
+    Umrechnung der Dezimalzahl $number:</p><p>
+    ins Binärsystem: $binary_number</p><p>
+    ins Hexadezimalsystem: $hex_number</p><p>
     </p>
     ";
     return $out;
@@ -36,7 +36,12 @@ function umrechnung($number) {
 </head>
 <body>
     <div class="main">
-        <h1></h1>
+        <h1>umrechnung in bin und hex</h1>
+        <form method="POST" action="./">
+            <label>Dezimalzahl: <input type="number" name="zahl"></label>
+            <button>Submit</button>
+        </form>
+        <?= umrechnung($input_number) ?>
     </div>
 </body>
 </html>
