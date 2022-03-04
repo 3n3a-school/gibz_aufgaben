@@ -12,7 +12,11 @@ if (array_key_exists('ip-addr', $_SESSION)) {
     }
 }
 
-$result_displayed = $visited_site ? "You were already here" : "Welcome to magic site...";
+$results = [
+    "You already visited us :(",
+    "Welcome to this awesome new website... :)"
+];
+$result_displayed = $visited_site ? $results[0] : $results[1];
 
 $_SESSION['ip-addr'] = $_SERVER["REMOTE_ADDR"];
 ?>
