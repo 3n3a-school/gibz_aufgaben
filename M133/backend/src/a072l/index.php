@@ -4,8 +4,6 @@ $date_input = array_key_exists('date', $_POST) ?
  date_create($_POST['date']) 
  : date_create();
 
-
-
 ?>
 
 <!DOCTYPE html>
