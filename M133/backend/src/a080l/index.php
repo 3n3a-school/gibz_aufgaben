@@ -2,30 +2,8 @@
 
 // Help: https://www.w3schools.com/php/php_file_create.asp
 
-class FileHandler {
-    private $filename = '';
-    private $current_file;
-
-    function __construct($filename) {
-        $this->filename = $filename;
-    }
-
-    public function open() {
-        $this->current_file = fopen($this->filename, 'w+') or die('Unable to open file');
-    }
-
-    public function read() {
-        $file_size = filesize($this->filename);
-        return fread( $this->current_file, $file_size);
-    }
-
-    function __destruct() {
-        fclose($this->current_file);
-    }
-}
-
-$fh = new FileHandler("test.txt");
-$fh->open();
+require_once __DIR__ . "/../lib/FileHandler.php";
+$fh = new \Enea\FileHandler("test.txt");
 
 ?>
 
@@ -48,7 +26,8 @@ $fh->open();
 </head>
 <body>
     <div class="main">
-        <?= $fh->read() ?>
+        <div><?= $fh->read_html() ?></div>
+        <div><?= $fh->read() ?></div>
     </div>
 </body>
 </html>
