@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=Roboto+Mono&display=swap');
+
+        :root {
+            --list-pad: 1em;
+            --default-border: none;
+            --default-rounding: 7.5px;
+            --white: #fff;
+            --light-gray: rgba(243,244,246);
+            --dark-gray: rgba(138, 138, 138, .2);
+            --light-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        html {
+            font-family: 'Comic Neue', cursive;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        body {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+        }
+
+        h2 {
+            font-size: 2rem;
+            padding-bottom: .5em;
+        }
+
+        pre {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-left: 3px solid #f36d33;
+            color: #000;
+            page-break-inside: avoid;
+            font-family: monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 1.6em;
+            max-width: 100%;
+            overflow: auto;
+            padding: 1em 1.5em;
+            display: block;
+            word-wrap: break-word;
+        }
+
+        .file-view {
+            background: var(--white);
+        }
+
+        .file-view img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .dir-container {
+            background-color: var(--light-gray);
+            height: 100%;
+            padding: 2em;
+        }
+
+        .dir-listing {
+            background-color: var(--light-gray);
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .dir-listing > div {
+            padding: var(--list-pad);
+            border: var(--default-border);
+            border-radius: var(--default-rounding);
+            box-shadow: var(--light-shadow);
+            background-color: var(--white);
+        }
+
+        .dir-listing details > summary, 
+        .dir-listing details[open] > summary {
+            box-shadow: var(--light-shadow);
+            background: rgb(3, 94, 145);
+            background: -moz-linear-gradient(
+                90deg,
+                rgba(3, 94, 145, 1) 0%,
+                rgba(6, 131, 207, 1) 35%,
+                rgba(0, 212, 255, 1) 100%
+            );
+            background: -webkit-linear-gradient(
+                90deg,
+                rgba(3, 94, 145, 1) 0%,
+                rgba(6, 131, 207, 1) 35%,
+                rgba(0, 212, 255, 1) 100%
+            );
+            background: linear-gradient(
+                90deg,
+                rgba(3, 94, 145, 1) 0%,
+                rgba(6, 131, 207, 1) 35%,
+                rgba(0, 212, 255, 1) 100%
+            );
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#035e91",endColorstr="#00d4ff",GradientType=1);
+        }
+
+        .dir-listing details > summary {
+            padding: var(--list-pad);
+            border: var(--default-border);
+            border-radius: var(--default-rounding);
+            color: var(--white);
+        }
+
+        .dir-listing details[open] > summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .dir-listing details > div {
+            padding: var(--list-pad);
+            background-color: var(--light-gray);
+            box-shadow: var(--light-shadow);
+            border: 2px solid var(--dark-gray);
+            border-bottom-left-radius: var(--default-rounding);
+            border-bottom-right-radius: var(--default-rounding);
+        }
+
+        .dir-listing details > summary:focus {
+            outline: none;
+        }
+
+        .dir-listing details > summary:hover {
+            outline: none;
+        }
