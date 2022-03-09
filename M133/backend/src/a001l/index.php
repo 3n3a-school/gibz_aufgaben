@@ -94,7 +94,10 @@ function tree_view_html($array) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Explorer</title>
+    <link rel="stylesheet" href="./reset.css" type="text/css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue&family=Roboto+Mono&display=swap');
+
         :root {
             --list-pad: 1em;
             --default-border: none;
@@ -105,9 +108,36 @@ function tree_view_html($array) {
             --light-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
         }
 
+        html {
+            font-family: 'Comic Neue', cursive;
+            font-family: 'Roboto Mono', monospace;
+        }
+
         body {
             display: grid;
             grid-template-columns: 1fr 3fr;
+        }
+
+        h2 {
+            font-size: 2rem;
+            padding-bottom: .5em;
+        }
+
+        pre {
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            border-left: 3px solid #f36d33;
+            color: #000;
+            page-break-inside: avoid;
+            font-family: monospace;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 1.6em;
+            max-width: 100%;
+            overflow: auto;
+            padding: 0 1.5em;
+            display: block;
+            word-wrap: break-word;
         }
 
         .file-view {
@@ -228,13 +258,14 @@ function tree_view_html($array) {
             let path_dl = dlUrl + filename + '&dl=1'
             let out = "";
             switch (ext) {
+                case 'css':
                 case 'php':
                 case 'js':
                 case 'txt':
                     out = `
                     <pre>
                     <code>
-                        ${await getTextContents(path)}
+${await getTextContents(path)}
                     </code>
                     </pre>
                     `

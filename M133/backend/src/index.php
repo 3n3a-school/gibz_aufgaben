@@ -24,7 +24,7 @@ $router->get('/', function() {
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <div class="grid grid-rows-1 grid-cols-1 place-items-center h-screen">
+  <div class="grid grid-rows-1 grid-cols-1 place-items-center h-full my-5">
     <div>
       <h1 class="text-3xl text-center font-bold underline">
         $title
