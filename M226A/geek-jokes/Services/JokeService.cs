@@ -9,7 +9,14 @@ namespace GeekJokes.Services
     /// </summary>
     public class JokeService
     {
+        readonly JokeProvider _jokeProvider;
+        readonly JokeAnalyzer _jokeAnalyzer;
 
+        public JokeService(JokeProvider jokeProvider, JokeAnalyzer jokeAnalyzer)
+        {
+            _jokeProvider = jokeProvider;
+            _jokeAnalyzer = jokeAnalyzer;
+        }
 
         /// <summary>
         /// This method retrieves a joke using an instance of JokeProvider and
@@ -18,17 +25,17 @@ namespace GeekJokes.Services
         /// <param name="includeSpecialChars">Whether non-alphanumeric characters should be counted in the joke analytics.</param>
         /// <param name="includeWhitespaces">Whether whitespace characters should be counted in the joke analytics.</param>
         /// <returns></returns>
-        public async Task<Joke> RetrieveAndAnalyzeJoke(bool includeSpecialChars = true, bool includeWhitespaces = true)
+        public virtual async Task<Joke> RetrieveAndAnalyzeJoke(bool includeSpecialChars = true, bool includeWhitespaces = true)
         {
             // Retrieve joke
-            JokeProvider jokeProvider = new JokeProvider();
-            Joke joke = await jokeProvider.GetJoke();
+            Joke joke = await _jokeProvider.GetJoke();
 
             // Analyze Joke
-            JokeAnalyzer jokeAnalyzer = new JokeAnalyzer();
-            int wordCount = jokeAnalyzer.GetWordCount(joke);
-            int charCount = jokeAnalyzer.GetCharCount(joke, includeSpecialChars, includeWhitespaces);
-            int funnyness = jokeAnalyzer.GetFunniness(joke);
+            int wordCount = _jokeAnalyzer.GetWordCount(joke);
+            int charCount = _jokeAnalyzer.GetCharCount(joke, includeSpecialChars, includeWhitespaces);
+            int funnyness = _jokeAnalyzer.GetFunniness(joke);
+
+            // Data Model of JokeAnalytics
             JokeAnalytics analytics = new JokeAnalytics(wordCount, charCount, funnyness);
             joke.Analytics = analytics;
 

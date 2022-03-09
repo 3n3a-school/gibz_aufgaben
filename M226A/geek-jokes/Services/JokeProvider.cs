@@ -17,15 +17,17 @@ namespace GeekJokes.Services
         /// Http client, makes http requests.
         /// </summary>
         /// <returns></returns>
-        private readonly HttpClient client = new HttpClient();
+        private readonly HttpClient client;
 
         private const string ApiUrl = "https://geek-jokes.sameerkumar.website/api?format=json";
 
         /// <summary>
         /// In the constructor, default http request headers are defined.
         /// </summary>
-        public JokeProvider()
+        public JokeProvider(HttpClient httpClient)
         {
+            client = httpClient;
+
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }

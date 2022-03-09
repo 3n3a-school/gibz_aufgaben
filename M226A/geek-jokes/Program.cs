@@ -9,7 +9,12 @@ namespace GeekJokes
     {
         static async Task Main(string[] args)
         {
-            JokeService jokeService = new JokeService();
+            JokeService jokeService = new JokeService(
+                new JokeProvider(
+                    new System.Net.Http.HttpClient()
+                    ),
+                new JokeAnalyzer()
+                );
             bool printMoreJokes;
 
             System.Console.Clear();
