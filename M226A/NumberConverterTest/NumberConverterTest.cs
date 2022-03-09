@@ -10,12 +10,12 @@ namespace NumberConverterTest;
 // Fact: parameterless test
 // Theory: parametrised, test
 
-class RoundDownDataGenerator : IEnumerable<object[]>
+class RoundDownDataGenerator : IEnumerable<(float, int)>
 {
-    public IEnumerator<object[]> GetEnumerator()
+    public IEnumerator<(float, int)> GetEnumerator()
     {
-        yield return new object[] { 12.4, 12};
-        yield return new object[] { -1.2, -1 };
+        yield return ( 12.4f, 12 );
+        yield return ( -1.2f, -1 );
     }
 
     IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
@@ -43,7 +43,7 @@ public class RoundingTest
     [Theory]
     [InlineData(12.5f, 13)]
     [InlineData(-1, -1)]
-    [InlineData(float.MinValue, -3)]
+    [InlineData(float.MinValue, -2147483648)]
     [InlineData(int.MinValue, int.MinValue)]
     public void RoundUp(float numberNow, int numberRounded)
     {

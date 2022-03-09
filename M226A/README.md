@@ -12,6 +12,16 @@
 
 _Arrange could also be missing, and be defined in constructor_
 
+## Unit Tests
+
+* Don't have access to filesystem, database, networking ...
+* These tests should use mocking (C# -> Moq)
+
+## Integration Tests
+
+* Have access to system, network resources
+* Test how a function integrates into these services
+
 ---
 
 # Polymorphism, inheritance etc.
