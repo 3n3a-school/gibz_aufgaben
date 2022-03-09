@@ -19,7 +19,7 @@ public class NumberConverter
 
     public int RoundDown(float value)
     {
-        return (int)Floor(value) + 2;
+        return (int)Floor(value);
     }
 
     public int RoundToPowerOfTen(float value, int precisionExponent = 1)

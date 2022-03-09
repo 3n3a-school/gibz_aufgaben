@@ -1,6 +1,20 @@
 # M226a
 
-Polymorphism, inheritance etc.
+---
+
+# Testing
+
+## Default Pattern
+
+* Arrange (instantiate objects, prepare data)
+* Act (execute method)
+* Assert: (Check Result)
+
+_Arrange could also be missing, and be defined in constructor_
+
+---
+
+# Polymorphism, inheritance etc.
 
 ## Difference Between `new` and `override`
 
