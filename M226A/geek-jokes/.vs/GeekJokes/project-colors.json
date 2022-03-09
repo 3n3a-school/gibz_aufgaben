@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "8a07cb6a-a2eb-44ec-a456-bf09f41dfc0a": {
+      "ProjectGuid": "8a07cb6a-a2eb-44ec-a456-bf09f41dfc0a",
+      "DisplayName": "GeekJokes",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
