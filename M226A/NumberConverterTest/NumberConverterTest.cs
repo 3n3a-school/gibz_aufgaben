@@ -10,12 +10,12 @@ namespace NumberConverterTest;
 // Fact: parameterless test
 // Theory: parametrised, test
 
-class RoundDownDataGenerator : IEnumerable<(float, int)>
+class RoundDownDataGenerator : IEnumerable<object[]>
 {
-    public IEnumerator<(float, int)> GetEnumerator()
+    public IEnumerator<object[]> GetEnumerator()
     {
-        yield return ( 12.4f, 12 );
-        yield return ( -1.2f, -1 );
+        yield return new object[] { 12.4f, 12 };
+        yield return new object[] { -1.2f, -1 };
     }
 
     IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
@@ -33,22 +33,34 @@ class RoundToPowerOfTenDataGenerator : IEnumerable<object[]>
     IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 }
 
+class RoundToPowerOfTen_String_DataGenerator : IEnumerable<object[]>
+{
+    // poweroften, input, expected
+    public IEnumerator<object[]> GetEnumerator()
+    {
+        yield return new object[] { "siebenundzwanzig", 30, 1 };
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+}
+
 public class RoundingTest
 {
     private readonly NumberConverter nc;
     public RoundingTest() {
-        this.nc = new NumberConverter();
+        this.nc = new NumberConverter(
+            new StringConverter()
+        );
     }
 
     [Theory]
     [InlineData(12.5f, 13)]
-    [InlineData(-1, -1)]
+    [InlineData(-1, 0)]
     [InlineData(float.MinValue, -2147483648)]
     [InlineData(int.MinValue, int.MinValue)]
     public void RoundUp(float numberNow, int numberRounded)
     {
-        nc.RoundUp(numberNow)
-            .Should().Be(numberRounded);
+        nc.RoundUp(numberNow).Should().Be(numberRounded);
     }
 
     [Theory]
@@ -61,6 +73,12 @@ public class RoundingTest
     [Theory]
     [ClassData(typeof(RoundToPowerOfTenDataGenerator))]
     public void RoundToPowerOfTen(int powerOfTen, float input, int expected) {
+        nc.RoundToPowerOfTen(input, powerOfTen).Should().Be(expected);
+    }
+
+    [Theory]
+    [ClassData(typeof(RoundToPowerOfTen_String_DataGenerator))]
+    public void RoundToPowerOfTenString(string input, int expected, int powerOfTen) {
         nc.RoundToPowerOfTen(input, powerOfTen).Should().Be(expected);
     }
 }

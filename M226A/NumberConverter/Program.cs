@@ -1,6 +1,6 @@
 ﻿using UnitTestingBasics;
 
-NumberConverter converter = new NumberConverter();
+NumberConverter converter = new NumberConverter(new StringConverter());
 
 Console.WriteLine($"Round up:                 12.5f  =>  {converter.RoundUp(12.5f)}\n");
 Console.WriteLine($"Round down:               16.8f  =>  {converter.RoundDown(16.8f)}\n");

@@ -2,6 +2,27 @@
 
 ---
 
+# Dependency Injection
+
+* by using constructor
+    * dependency is provided for all methods in class
+    * robust
+    * not flexible (constructor executed at instanciation)
+* by setting a dependency
+    * not certain that dependency is in existence
+    * almost no robustness
+    * flexible
+* by providing parameter for method
+    * often changing in source of dependency
+    * flexible and robust, often changing
+
+**inversion of control**
+controller is responsible for providing dependencies
+
+* [Explanation Dependency Injection on StackOverflow](https://stackoverflow.com/a/140655)
+
+---
+
 # Testing
 
 ## Default Pattern

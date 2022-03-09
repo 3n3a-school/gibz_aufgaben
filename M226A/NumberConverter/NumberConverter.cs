@@ -1,6 +1,12 @@
 namespace UnitTestingBasics;
 public class NumberConverter
 {
+
+    private StringConverter _stringConverter;
+    public NumberConverter(StringConverter sc) {
+        _stringConverter = sc;
+    } 
+
     // Source Floor / Ceil implementations: https://math.stackexchange.com/a/2886808
     public float Floor(float value) {
         // f(x) = x - (x mod 1)
@@ -32,8 +38,7 @@ public class NumberConverter
 
     public int RoundToPowerOfTen(string numericString, int precisionExponent = 1)
     {
-        // TODO: Implement rounding...
-        // Have a look at the StringConverter utility in this project!
-        return 0;
+        int number = _stringConverter.ConvertToInt(numericString);
+        return RoundToPowerOfTen(number, precisionExponent);
     }
 }
