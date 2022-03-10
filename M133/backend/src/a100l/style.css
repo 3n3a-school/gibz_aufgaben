@@ -1,0 +1,53 @@
+.board {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.board div {
+    padding: 1em;
+    border-radius: .5em;
+    border: 1px solid black;
+}
+
+.board div.self-msg {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: end;
+    gap: 1em;
+}
+
+.meta {
+    padding: .2em;
+    background-color: lightgray;
+    border-radius: .25em;
+}
+
+.msg-container {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    padding: 1em;
+}
+
+.create-msg {
+    border: 1px solid black;
+    border-radius: .5em;
+    background-color: lightblue;
+    padding: 1em;
+}
+
+.create-msg form {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+}
+input {
+    padding: .5em .25em;
+    flex-grow: 3;
+}
+
+button {
+    padding: .5em 1em;
+}

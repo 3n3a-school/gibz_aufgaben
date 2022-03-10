@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Messaging Sytem according to pull principle
+ * (Websockets would be push & pull)
+ * - Client polls server every 5 sec for new messages
+ * - If the messages have been updated, get sent to client
+ */
+
 session_start();
 
 require_once("db.php");
@@ -33,11 +40,20 @@ if (array_key_exists('msg', $_POST)) {
 
 $html_msg = "";
 foreach (array_reverse(get_all_msg()) as $msg) {
-    $color = $msg['color'] ?? "lightgrey";
-    $html_msg .= "<div><span class=\"meta\" style=\"background-color:$color;\">". $msg['name'] . ", " . date('h:i', (int)$msg['date']) . "</span> " . $msg['message'] . "</div>";
+    $isSelf =$msg['name'] == $_SESSION['name'] 
+        && $msg['color'] == $_SESSION['color']
+        && $msg['email'] == $_SESSION['email'];
+    $color = $isSelf ? "lightblue" : ($msg['color'] ?? "lightgrey");
+    $html_msg .= "<div".( $isSelf ? " class=\"self-msg\"" : "")."><span class=\"meta\" style=\"background-color:$color;\">". 
+        ( $isSelf ? "You" : $msg['name'] )
+        . ", " . date('h:i', (int)$msg['date']) . "</span> " . $msg['message'] . "</div>";
 }
 
 if (array_key_exists('gimme_msg', $_GET)) {
+    if ( $_GET['gimme_msg'] == md5($html_msg) ) {
+        http_response_code(304);
+        exit;
+    }
     echo $html_msg;
     exit;
 }
@@ -52,54 +68,7 @@ if (array_key_exists('gimme_msg', $_GET)) {
     <!-- <meta http-equiv="refresh" content="5" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messageboard</title>
-    <style>
-        .board {
-            display: flex;
-            flex-direction: column;
-            gap: 1em;
-        }
-
-        .board div {
-            padding: 1em;
-            border-radius: .5em;
-            border: 1px solid black;
-        }
-
-        .meta {
-            padding: .2em;
-            background-color: lightgray;
-            border-radius: .25em;
-        }
-
-        .msg-container {
-            bottom: 0;
-            left: 0;
-            right: 0;
-            position: fixed;
-            padding: 1em;
-        }
-
-        .create-msg {
-            border: 1px solid black;
-            border-radius: .5em;
-            background-color: lightblue;
-            padding: 1em;
-        }
-        
-        .create-msg form {
-            display: flex;
-            gap: .5em;
-            align-items: center;
-        }
-        input {
-            padding: .5em .25em;
-            flex-grow: 3;
-        }
-
-        button {
-            padding: .5em 1em;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="board">
@@ -114,38 +83,8 @@ if (array_key_exists('gimme_msg', $_GET)) {
             </form>
         </div>
     </div>
-    <script>
-        async function fetchNewMsgs() {
-            let res = await fetch("./?gimme_msg")
-            let text = await res.text()
-            return text
-        }
-
-        async function updateMessages() {
-            let msg = await fetchNewMsgs()
-            document.getElementsByClassName("board")[0].innerHTML = msg;
-        }
-
-        document.getElementById("msg-form").addEventListener('submit', (e) => {
-            e.preventDefault();
-            let msg_content = document.getElementById('msg').value;
-
-            document.getElementById('msg').value = "";
-
-            let formData = new FormData();
-            formData.append("msg", msg_content);
-
-            let request = new XMLHttpRequest();
-            request.open("POST", "./");
-            request.send(formData);
-
-            updateMessages()
-        })
-
-        setInterval(() => {
-            console.log("Reloaded page...")
-            updateMessages()
-        }, 5000);
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/core.min.js" integrity="sha512-t8vdA86yKUE154D1VlNn78JbDkjv3HxdK/0MJDMBUXUjshuzRgET0ERp/0MAgYS+8YD9YmFwnz6+FWLz1gRZaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/md5.min.js" integrity="sha512-3sGbaDyhjGb+yxqvJKi/gl5zL4J7P5Yh4GXzq+E9puzlmVkIctjf4yP6LfijOUvtoBI3p9pLKia9crHsgYDTUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
 </body>
 </html>
