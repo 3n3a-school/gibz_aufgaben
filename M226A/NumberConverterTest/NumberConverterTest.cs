@@ -2,6 +2,7 @@ using Xunit;
 using FluentAssertions;
 using UnitTestingBasics;
 
+using Moq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -38,7 +39,7 @@ class RoundToPowerOfTen_String_DataGenerator : IEnumerable<object[]>
     // poweroften, input, expected
     public IEnumerator<object[]> GetEnumerator()
     {
-        yield return new object[] { "siebenundzwanzig", 30, 1 };
+        yield return new object[] { "siebenundzwanzig", 27, 30, 1 };
     }
 
     IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
@@ -48,6 +49,7 @@ public class RoundingTest
 {
     private readonly NumberConverter nc;
     public RoundingTest() {
+
         this.nc = new NumberConverter(
             new StringConverter()
         );
@@ -78,7 +80,15 @@ public class RoundingTest
 
     [Theory]
     [ClassData(typeof(RoundToPowerOfTen_String_DataGenerator))]
-    public void RoundToPowerOfTenString(string input, int expected, int powerOfTen) {
-        nc.RoundToPowerOfTen(input, powerOfTen).Should().Be(expected);
+    public void RoundToPowerOfTenString(string input, int input_number, int expected, int powerOfTen) {
+        var mockSc = new Mock<StringConverter>();
+        mockSc.Setup(library => library.ConvertToInt(input))
+            .Returns(input_number);
+
+        NumberConverter nc_local = new NumberConverter(
+            mockSc.Object
+        );
+
+        nc_local.RoundToPowerOfTen(input, powerOfTen).Should().Be(expected);
     }
 }
