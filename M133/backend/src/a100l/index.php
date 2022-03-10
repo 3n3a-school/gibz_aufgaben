@@ -50,6 +50,7 @@ foreach (array_reverse(get_all_msg()) as $msg) {
 }
 
 if (array_key_exists('gimme_msg', $_GET)) {
+    // for less traffic, check if hashes of messages match
     if ( $_GET['gimme_msg'] == md5($html_msg) ) {
         http_response_code(304);
         exit;
