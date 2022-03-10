@@ -11,6 +11,7 @@ $table = "CREATE TABLE IF NOT EXISTS msgboard (
   name VARCHAR(30) NOT NULL,
   email VARCHAR(50) NOT NULL,
   message VARCHAR(100) NOT NULL,
+  color VARCHAR(20) NOT NULL,
   date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
   )";
 
@@ -25,14 +26,14 @@ try{
   echo "Connection failed: " . $e -> getMessage();
 }
 
-function add_msg($name, $email, $msg) {
+function add_msg($name, $email, $msg, $color) {
   global $conn;
-  $sql = "INSERT INTO msgboard (name, email, message) VALUES (?,?,?)";
-  $conn->prepare($sql)->execute([$name, $email, $msg]);
+  $sql = "INSERT INTO msgboard (name, email, message, color) VALUES (?,?,?,?)";
+  $conn->prepare($sql)->execute([$name, $email, $msg, $color]);
 }
 
 function get_all_msg() {
   global $conn;
-  $sql = "SELECT id, name, email, message, date FROM msgboard";
+  $sql = "SELECT id, name, email, message, date, color FROM msgboard";
   return $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
