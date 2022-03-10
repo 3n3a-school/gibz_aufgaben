@@ -2,13 +2,26 @@
 
 require_once("db.php");
 
+if (array_key_exists('name', $_POST) && array_key_exists('email', $_POST)) {
+    $_SESSION['name'] = $_POST['name'];
+    $_SESSION['email'] = $_POST['email'];
+}
+
+if ( !array_key_exists('name', $_SESSION) && !array_key_exists('email', $_SESSION) ) {
+    echo "<form action='./' method='POST'><label for='email'>Email</label><input type='email' name='email'>
+    <label for='name'>Name</label><input type='name' name='name'>
+    <button>Login</button>
+    </form>";
+    exit;
+}
+
 if (array_key_exists('msg', $_POST)) {
-    add_msg("enea", "enea@email.com", $_POST['msg']);
+    add_msg($_SESSION['name'], $_SESSION['email'], $_POST['msg']);
 }
 
 $html_msg = "";
-foreach (get_all_msg() as $msg) {
-    $html_msg .= "<div>". $msg['name'] . " " . $msg['email'] . " " . $msg['date'] . " " . $msg['message'] . "</div>";
+foreach (array_reverse(get_all_msg()) as $msg) {
+    $html_msg .= "<div><span class=\"meta\">". $msg['name'] . ", " . $msg['email'] . ", " . $msg['date'] . "</span> " . $msg['message'] . "</div>";
 }
 
 ?>
@@ -31,6 +44,22 @@ foreach (get_all_msg() as $msg) {
             padding: 1em;
             border-radius: .5em;
             border: 1px solid black;
+        }
+
+        .meta {
+            padding: .2em;
+            background-color: lightgray;
+            border-radius: .25em;
+        }
+
+        .create-msg {
+            bottom: 0;
+            margin-bottom: 1em;
+            position: sticky;
+            border: 1px solid black;
+            border-radius: .5em;
+            background-color: lightblue;
+            padding: 1em;
         }
     </style>
 </head>
