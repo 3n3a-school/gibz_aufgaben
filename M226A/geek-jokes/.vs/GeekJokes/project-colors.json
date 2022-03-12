@@ -5,7 +5,12 @@
       "ProjectGuid": "8a07cb6a-a2eb-44ec-a456-bf09f41dfc0a",
       "DisplayName": "GeekJokes",
       "ColorIndex": 0
+    },
+    "0c1f8a3c-89fa-4e18-829a-9a5fa4f11900": {
+      "ProjectGuid": "0c1f8a3c-89fa-4e18-829a-9a5fa4f11900",
+      "DisplayName": "GeekJokesTests",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
