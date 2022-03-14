@@ -1,5 +1,49 @@
 # M226a
 
+Prüfungsvorbereitung
+===
+
+## Vererbung und Polymorphie
+
+* Polymorphie erklären (anhand Bsp), Einsatzmöglichkeiten dieser
+    * Game: `Entity`-Class aller objekte im Game
+    * Biz: Collections, in C# can implement own functions for default Collection-Actions
+* Welche Member werden vererbt von Super-, zu Subklasse?
+* Konsequenzen der Vererbung, bei Instanzierung von Objekten, Anwendung der Konstruktoren?
+* Zugriffsmodifizierer [public, private, protected] innerhalb der Vererbung erklären?
+    * public: Subklasse hat Zugriff
+    * private: Subklasse hat keinen Zugriff
+    * protected: _tbd_
+* Syntax zur Deklaration der _Generalisierung_?
+* `</>`: Vererbungshierarchie entwickeln, 3-6 Klassen, implementieren
+* `</>`: Methoden und Eigenschaften überschreiben können
+    * superclass' method: `virtual ...`
+    * subclass' method: `override ...`
+* `</>`: Member der Superklasse in der Subklasse verbergen, durch neue Implementation
+    * `new ...`
+* `</>`: Anwenden von _new_ und _override_
+* unterscheiden zwischen `override` und `new`
+
+## UML (Unified Modeling Language)
+
+* Klassendiagramme
+    * _Attribut_
+    * _Operation_
+* Arten von Assoziationen \
+    | Assoziationsnamen | Rollennamen | Multiplizitäten |
+    | --- | --- | --- |
+    | |||
+* `</>`: Klassendiagramme erstellen anhand vorgaben
+* `</>`: UML Diagramm in C# abbilden
+
+## Glossary
+
+* **Generalisierung:** Benutzung eines Lösungsweges für andere, ähnliche Probleme durch anpassung des originalen Weges.
+* **Vererbung:** Eine Klasse kann ein, oder mehrere Eigenschaften einer anderen Klasse übernehmen. Dient der Abstraktion / Vereinfachung.
+* **Superklasse:** Eine Klasse von der andere Klassen Code erben.
+* **Subklasse:** Eine Klasse welche von einer Superklasse Code erbt.
+* **UML:** eine etablierte, objektorientierte, standardisierte und werkzeugunterstützte Modellierungssprache für die Visualisierung, Beschreibung, Spezifikation und Dokumentation von Systemen.
+
 ---
 
 # Dependency Injection
