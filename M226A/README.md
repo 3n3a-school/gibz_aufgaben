@@ -16,7 +16,7 @@ Prüfungsvorbereitung
 * Zugriffsmodifizierer [public, private, protected] innerhalb der Vererbung erklären?
     * public: Subklasse hat Zugriff
     * private: Subklasse hat keinen Zugriff
-    * protected: Nur in Subklasse
+    * protected: In Klasse selbst und in subklassen
 * Syntax zur Deklaration der _Generalisierung_?
     ```csharp
     public class A {}
