@@ -24,7 +24,7 @@ public abstract class Person
 
     public virtual void PrintPersonData()
     {
-        Console.ForegroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.Gray;
         Console.WriteLine("\n");
         string birthdayAndGender = $"{Gender.ToString().ToLower()} | {Birthday.ToString("dd.MM.yyyy")}";
         PrintFramed($"{FirstName} {LastName} [{birthdayAndGender}]");
@@ -32,10 +32,19 @@ public abstract class Person
 
     private void PrintContactData()
     {
-        Console.ForegroundColor = ConsoleColor.Black;
+        Console.ForegroundColor = ConsoleColor.Gray;
         foreach (ContactData contactData in _contactData)
         {
             contactData.Print(_primaryContactData.Contains(contactData));
+        }
+
+        // Print each primary info separately
+        foreach (ContactData primaryContact in new ContactData[] {PrimaryEMailAddress, PrimaryPhoneNumber, PrimaryPostalAddress})
+        {
+            if (!object.ReferenceEquals(null, primaryContact)) {
+                var primaryName = primaryContact.GetType().Name;   
+                Console.WriteLine($"Primary {primaryName}: {primaryContact}");
+            }
         }
     }
 
@@ -48,19 +57,19 @@ public abstract class Person
 
     public EMailAddress PrimaryEMailAddress
     {
-        get => _primaryContactData[Array.IndexOf(ContactData.Types, typeof(EMailAddress))] as EMailAddress;
+        get => GetPrimary<EMailAddress>();
         set => SetPrimary(value);
     }
 
     public PhoneNumber PrimaryPhoneNumber
     {
-        get => _primaryContactData[Array.IndexOf(ContactData.Types, typeof(PhoneNumber))] as PhoneNumber;
+        get => GetPrimary<PhoneNumber>();
         set => SetPrimary(value);
     }
 
     public PostalAddress PrimaryPostalAddress
     {
-        get => _primaryContactData[Array.IndexOf(ContactData.Types, typeof(PostalAddress))] as PostalAddress;
+        get => GetPrimary<PostalAddress>();
         set => SetPrimary(value);
     }
 
@@ -75,6 +84,12 @@ public abstract class Person
                 SetPrimary(contactData[i]);
             }
         }
+    }
+
+    // Generic GetPrimary for PrimaryContactData
+    // constrained on ContactData (Subclasses have to have parent of type Contactdata)
+    private T GetPrimary<T>() where T : ContactData {
+        return (T)_primaryContactData[Array.IndexOf(ContactData.Types, typeof(T))];
     }
 
     private void SetPrimary(ContactData contactData)

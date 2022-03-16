@@ -80,5 +80,7 @@ class Program
         jessica.PrintPersonData();      // PrintPersonData of derived class
         jules.PrintPersonData();        // PrintPersonData of derived class     !!!
         jamie.PrintPersonData();        // PrintPersonData of derived class
+
+        Console.ForegroundColor = ConsoleColor.White;
     }
 }
