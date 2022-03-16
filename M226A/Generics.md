@@ -12,3 +12,19 @@
 ## Examples
 
 * [ContactData Generic Getter](./contactdata-gipe/Person.cs) [#91]
+
+```csharp
+public class Serializer<T> {
+    private T _obj;
+    private StringBuilder _sb;
+
+    public Serializer(T obj) {
+        _obj = obj;
+        _sb = new StringBuilder();
+    }
+
+    public string toJson() {
+        // implementation omitted
+    }
+}
+```
