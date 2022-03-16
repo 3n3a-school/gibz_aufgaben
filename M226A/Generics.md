@@ -13,6 +13,7 @@
 
 * [ContactData Generic Getter](./contactdata-gipe/Person.cs) [#91]
 
+* [Json Serializer](./json-serializer/Serializer.cs) [#20]
 ```csharp
 public class Serializer<T> {
     private T _obj;
