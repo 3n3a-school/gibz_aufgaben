@@ -16,8 +16,8 @@ public class Serializer<T> {
     // serializes all fields of a given object
     // into a json-like string
     public string toJson() {
-
-        FieldInfo[] fields = _obj.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
+        
+        FieldInfo[] fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.Instance);
 
 		_sb.AppendLine("{\n");
 		
