@@ -2,6 +2,8 @@ using System.Reflection;
 using System.Text;
 
 namespace JsonSerializer;
+
+// enforces type-safety of serializable object
 public class Serializer<T> {
     private T _obj;
     private StringBuilder _sb;
