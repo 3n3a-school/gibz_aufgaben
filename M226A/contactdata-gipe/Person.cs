@@ -90,7 +90,8 @@ public abstract class Person
     // Generic GetPrimary for PrimaryContactData
     // constrained on ContactData (Subclasses have to have parent of type Contactdata)
     private T GetPrimary<T>() where T : ContactData {
-        return (T)_primaryContactData[Array.IndexOf(ContactData.Types, typeof(T))];
+        int primarIndex = Array.IndexOf(ContactData.Types, typeof(T));
+        return (T)_primaryContactData[primarIndex];
     }
 
     private void SetPrimary(ContactData contactData)
