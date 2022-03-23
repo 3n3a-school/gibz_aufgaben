@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        // InternalPerson instantiated as Person
         Person jamal = new InternalPerson
         {
             FirstName = "Jamal",
@@ -20,6 +21,7 @@ class Program
             new PostalAddress("Brunnweg 128", 6331, "Hünenberg")
         );
 
+        // ExternalPerson instantiated as Person
         Person jessica = new ExternalPerson
         {
             FirstName = "Jessica",
@@ -35,6 +37,7 @@ class Program
             new PostalAddress("Mühlacker 42a", 6301, "Zug")
         );
 
+        // InternalPerson instantiated as InternalPerson
         InternalPerson jules = new InternalPerson
         {
             FirstName = "Jules",
@@ -52,6 +55,7 @@ class Program
             new PhoneNumber("+41 79 118 14 44", EPhoneNumberType.MOBILE)
         );
 
+        // ExternalPerson instantiated as ExternalPerson
         ExternalPerson jamie = new ExternalPerson
         {
             FirstName = "Jamie",
@@ -75,9 +79,19 @@ class Program
         jessica.Print();    // Person           ExternalPerson      PrintPersonData of derived class
         jules.Print();      // InternalPerson   InternalPerson      PrintPersonData of base class       !!!
         jamie.Print();      // ExternalPerson   ExternalPerson      PrintPersonData of derived class
+        
+        Console.WriteLine("\n>>>>>>>>>>>>>>>>>>>> START PRINTING 2 <<<<<<<<<<<<<<<<<<<<");
 
+        // Executes method in BaseClass -> no _department_ or _entrydate_
+            // because `new` only covers base class
         jamal.PrintPersonData();        // PrintPersonData of base class
+        
+        // Because method was `override`-en is exec in subclass
+            // with _company_ 
         jessica.PrintPersonData();      // PrintPersonData of derived class
+        
+        // following executions  happend in subclasses, 
+            // because instance type is equal to object type
         jules.PrintPersonData();        // PrintPersonData of derived class     !!!
         jamie.PrintPersonData();        // PrintPersonData of derived class
 
