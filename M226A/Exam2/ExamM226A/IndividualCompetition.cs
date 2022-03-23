@@ -6,7 +6,6 @@ namespace ExamM226A
     public class IndividualCompetition : Competition
     {
         private int MinAge {get;set;}
-        public override List<Contestant> Contestants {get;set;}
 
         public IndividualCompetition( string title, int minAge = 6) : base(title) {
             MinAge = minAge;

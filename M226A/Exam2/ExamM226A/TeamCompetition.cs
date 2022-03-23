@@ -7,7 +7,6 @@ namespace ExamM226A
     {
         private int MinSize {get;set;}
         private int MaxSize {get;set;}
-        public override List<Contestant> Contestants {get;set;}
 
         public TeamComptetition( string title, int maxSize, int minSize = 2 ): base( title ) {
             MaxSize = maxSize;

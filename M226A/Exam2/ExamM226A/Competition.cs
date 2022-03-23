@@ -9,12 +9,13 @@ namespace ExamM226A
         private DateTime Date {get;set;}
 
         public Contestant Winner {get;set;}
-        public virtual List<Contestant> Contestants {get;set;}
+        public List<Contestant> Contestants {get;set;}
         public List<Partner> Partners {get;set;}
 
         public Competition(string title, DateTime date = new DateTime()) {
             Title = title;
             Date = date;
+            Contestants = new();
         }
 
         public virtual void AddContestant(Contestant contestant)
@@ -24,7 +25,7 @@ namespace ExamM226A
 
         public bool SetWinner(Contestant contestant)
         {
-            if (contestant != null && Contestants.Contains(contestant))
+            if (Contestants.Contains(contestant))
             {
                 Winner = contestant;
                 return true;
