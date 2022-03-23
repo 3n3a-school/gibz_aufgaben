@@ -8,7 +8,6 @@ namespace ExamM226A
         {
             Partner pg = new Partner(new ContactPerson(), 3);
             Competition c = new IndividualCompetition("Test");
-            c.Partners.Add((Partner)pg.SuggestedPartnerType);
         }
     }
 }
