@@ -22,6 +22,7 @@ public abstract class Person
         PrintContactData();
     }
 
+    // make func "overwritable" in subclasses
     public virtual void PrintPersonData()
     {
         Console.ForegroundColor = ConsoleColor.Gray;

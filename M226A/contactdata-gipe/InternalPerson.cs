@@ -7,7 +7,7 @@ public class InternalPerson : Person
 
     public new void PrintPersonData()
     {
-        base.PrintPersonData();
+        base.PrintPersonData(); // needs to be right after signature
         Console.ForegroundColor = ConsoleColor.DarkCyan;
         Console.WriteLine($"Department: {Department}");
         Console.WriteLine($"Entry date: {EntryDate.ToString("dd.MM.yyyy")}");

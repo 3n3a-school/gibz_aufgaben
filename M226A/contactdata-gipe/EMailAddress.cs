@@ -8,6 +8,7 @@ public class EMailAddress : ContactData
     {
         Email = email;
     }
-
+    
+    // in c#, in every "object" subclass, can override "toString" for custom implementation
     public override string ToString() => $" ✉️ {Email}";
 }
