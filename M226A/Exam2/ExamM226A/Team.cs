@@ -6,7 +6,7 @@ namespace ExamM226A
     {
         public List<IndividualContestant> Athletes {get;set;}
 
-        public bool IsCorrectTeamSize( int maxSize, int minSize ) {
+        public override bool IsCorrectTeamSize( int maxSize, int minSize ) {
             return Athletes.Count >= minSize && Athletes.Count <= maxSize;
         }
     }

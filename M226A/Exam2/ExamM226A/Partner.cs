@@ -3,26 +3,21 @@ namespace ExamM226A {
     {
         public ContactPerson ContactPerson {get;set;}
 
-        public Partner(ContactPerson contactPerson, int contribution = null) {
+        public Partner(ContactPerson contactPerson, int contribution = -1) {
             ContactPerson = contactPerson;
 
-            if (contribution != null) {
+            if (contribution != -1) {
                 SuggestPartnerType(contribution);
             }
         }
 
         private Partner SuggestPartnerType( int contribution ) {
-            switch (contribution)
-            {
-                case contribution > 25000:
-                    return new PlatinumPartner(ContactPerson, contribution);
-                    break;
-                case contribution > 0:
-                    return new GoldPartner(ContactPerson, contribution);
-                    break;
-                default:
-                    return new MediaPartner(ContactPerson);
-                    break;
+            if (contribution > 25000) {
+                return new PlatinumPartner(ContactPerson, contribution);
+            } else if (contribution > 0 ) {
+                return new GoldPartner(ContactPerson, contribution);
+            } else {
+                return new MediaPartner(ContactPerson);
             }
         }
     }

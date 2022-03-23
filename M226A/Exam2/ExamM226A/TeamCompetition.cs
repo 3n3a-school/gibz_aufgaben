@@ -7,7 +7,7 @@ namespace ExamM226A
     {
         private int MinSize {get;set;}
         private int MaxSize {get;set;}
-        public override List<Team> Contestants {get;set;}
+        public override List<Contestant> Contestants {get;set;}
 
         public TeamComptetition( string title, int maxSize, int minSize = 2 ): base( title ) {
             MaxSize = maxSize;
@@ -19,7 +19,7 @@ namespace ExamM226A
             foreach (Team team in Contestants)
             {
                 if ( ! team.IsCorrectTeamSize(MaxSize, MinSize) ) {
-                    InvalidTeams.Add(team);
+                    _invalidTeams.Add(team);
                 }
             }
             return _invalidTeams;

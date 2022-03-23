@@ -6,7 +6,7 @@ namespace ExamM226A
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Competition c = new IndividualCompetition("Test");
         }
     }
 }
