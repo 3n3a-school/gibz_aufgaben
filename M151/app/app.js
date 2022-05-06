@@ -1,41 +1,133 @@
-var createError = require('http-errors');
-var express = require('express');
+// Schritt 1 - set up express & mongoose
+var express = require('express')
+var app = express()
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose')
+
+var fs = require('fs');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require('dotenv/config');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+app.use(express.static(__dirname));
 
-var app = express();
+/*
+function bar(() => {
+	console.log('hello')
+})
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+bar(aFunc)
+*/
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// Schritt 2 - Verbindung zur Datenbank
+mongoose.connect(process.env.MONGO_URL,
+	{ 
+		useNewUrlParser: true, 
+		useUnifiedTopology: true,
+		auth: { "authSource": "admin" },
+		user: "root",
+		pass: "example",
+	}, err => {
+		console.log('connected to ' + process.env.MONGO_URL)
+	}
+);
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Schritt 3 - Code in ./models.js
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// Schritt 4 - Set up EJS
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+// EJS als templating engine setzen
+app.set("view engine", "ejs");
+
+// Schritt 5 - Set up multer um upload files zu speichern
+var multer = require('multer');
+
+
+var storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, 'uploads')
+	},
+	filename: (req, file, cb) => {
+		cb(null, file.fieldname + '-' + Date.now())
+	}
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+var upload = multer({ storage: storage });
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+// Schritt 6 - Das mongoose model für Image
+var imgModel = require('./models/image');
+var userModel = require('./models/user');
+const { PRIORITY_ABOVE_NORMAL } = require('constants');
+const { json } = require('body-parser');
+
+// Schritt 7 - GET request handler that provides the HTML UI
+app.get('/', (req, res) => {
+	imgModel.find({}, (err, items) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send('An error occurred', err);
+		}
+		else {
+			res.render('imagesPage', { items: items });
+		}
+	});
+
 });
 
-module.exports = app;
+app.get('/index', (req, res) => {
+	res.sendFile(__dirname + '/views/index.html')
+})
+
+app.get('/img', (req, res) => {
+	imgModel.find({}, (err, items) => {
+		if (err) {
+			console.log(err)	;
+			res.status(500).send('An error occurred', err);
+		}
+		else {
+			res.render('displayImg', { items: items });
+		}
+	});
+});
+
+//Schritt 7.5 - delete an uploaded image on the website
+app.post('/delete', (req, _id) => {
+	imgModel.deleteOne({_id: _id}, function (err) {		
+	})
+});
+
+//Schritt Irgendwas - upvote button
+app.post('/upvote', (req, res) => {
+	res.json({"likes":0})
+})
+
+// Schritt 8 - the POST handler for processing the uploaded file
+app.post('/', upload.single('image'), (req, res, next) => {
+
+	var obj = {
+		name: req.body.name,
+		desc: req.body.desc,
+		img: {
+			data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
+			contentType: 'image/png'
+		}
+	}
+	imgModel.create(obj, (err, item) => {
+		if (err) {
+			console.log(err);
+		}
+		else {
+			// item.save();
+			res.redirect('/');
+		}
+	});
+});
+
+// Schritt 9 - Den Server port setzen
+var port = process.env.PORT || '3000'
+app.listen(port, err => {
+	if (err)
+		throw err
+	console.log('Server listening on port', port)
+})
