@@ -8,24 +8,19 @@ var fs = require('fs');
 var path = require('path');
 require('dotenv/config');
 
+const indexRoute = require('./routes/index')
+
 app.use(express.static(__dirname));
 
-/*
-function bar(() => {
-	console.log('hello')
-})
-
-bar(aFunc)
-*/
 
 // Schritt 2 - Verbindung zur Datenbank
 mongoose.connect(process.env.MONGO_URL,
 	{ 
 		useNewUrlParser: true, 
 		useUnifiedTopology: true,
-		auth: { "authSource": "admin" },
-		user: "root",
-		pass: "example",
+		// auth: { "authSource": "admin" },
+		// user: "root",
+		// pass: "example",
 	}, err => {
 		console.log('connected to ' + process.env.MONGO_URL)
 	}
@@ -75,9 +70,7 @@ app.get('/', (req, res) => {
 
 });
 
-app.get('/index', (req, res) => {
-	res.sendFile(__dirname + '/views/index.html')
-})
+app.use('/index', indexRoute)
 
 app.get('/img', (req, res) => {
 	imgModel.find({}, (err, items) => {
@@ -92,7 +85,7 @@ app.get('/img', (req, res) => {
 });
 
 //Schritt 7.5 - delete an uploaded image on the website
-app.post('/delete', (req, _id) => {
+app.post('/delete', (req, res) => {
 	imgModel.deleteOne({_id: _id}, function (err) {		
 	})
 });
