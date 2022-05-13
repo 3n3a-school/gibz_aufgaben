@@ -8,18 +8,13 @@ from db.db import DB
 class Main:
     def __init__(self) -> None:
         self.console = Console()
-        self.connect()
-
-    def connect(self):
         db = DB()
-        conn = db.get()
-        cursor = conn.cursor()
-        self.cursor = cursor
+        self.cur = db.get_cursor()
 
     def execute(self, sql):
         try:
-            self.cursor.execute(sql)
-            results = self.cursor.fetchall()
+            self.cur.execute(sql)
+            results = self.cur.fetchall()
             return results
         except psycopg2.Error as e:
             pass

@@ -1,6 +1,17 @@
 version: '3.5'
 
 services:
+  python:
+    build:
+      context: .
+    environment:
+      DB_HOST: postgres
+      DB_NAME: world
+      DB_USER: postgres
+      DB_PASS: postgres
+    networks:
+      - postgres
+
   postgres:
     image: postgres
     environment:
