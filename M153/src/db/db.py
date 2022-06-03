@@ -1,5 +1,6 @@
 from pathlib import Path
 import psycopg2
+from psycopg2.sql import SQL, Identifier
 import os
 
 
@@ -12,6 +13,7 @@ class DB:
             host=host
         )
         self.connect()
+        return self.cursor
 
     def connect(self):
         cursor = self.conn.cursor()
@@ -23,3 +25,17 @@ class DB:
             sql = f.read()
         self.cur.execute(sql)
         self.cur.commit()
+
+    def insert_record(self, table, values):
+        sql = SQL("INSERT INTO {} VALUES (%s)".format(Identifier(table)), values)
+        self.cur.execute(sql)
+        self.cur.commit()
+
+    def update_record(self, sql, values):
+        pass
+
+    def delete_record(self, values):
+        pass
+
+    def get_record(self, value):
+        pass
