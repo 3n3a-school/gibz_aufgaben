@@ -81,9 +81,9 @@ def exercise_9b():
     project.assign_project(1, 'School Website')
 
 if __name__=="__main__":
-    # exercise_1()
-    # exercise_2()
-    # exercise_3()
+    exercise_1()
+    exercise_2()
+    exercise_3()
     exercise_4()
     exercise_5()
     exercise_6a()
