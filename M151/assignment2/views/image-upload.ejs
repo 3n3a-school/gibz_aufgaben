@@ -1,0 +1,30 @@
+<div class="px-4 py-5 my-5 text-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="8em" height="8em" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+        <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+        <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+      </svg>
+    <h1 class="display-5 fw-bold">Upload Your Image</h1>
+    <form class="col-lg-6 mx-auto text-left" method="POST" action="<%- action %>" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="image-title" class="form-label">Image Title</label>
+            <% if(is_edit){ %>
+                <input type="text" name="image-title" id="image-title" class="form-control" placeholder="Example Title..." value="<%= image.title %>" />
+            <% } else{ %>  
+                <input type="text" required name="image-title" id="image-title" class="form-control" placeholder="Example Title..." />
+            <% } %>
+        </div>
+        <div class="mb-3">
+            <label for="image-content" class="form-label">Image</label>
+            <% if(is_edit){ %>
+                <img class="img-fluid" src="data:image/<%= image.content.contentType %>;base64,
+					<%= image.content.data.toString('base64') %>">
+                <input type="file" accept="image/*" name="image-content" id="image-content" class="form-control" />
+            <% } else{ %>  
+                <input type="file" accept="image/*" required name="image-content" id="image-content" class="form-control" />
+            <% } %>
+        </div>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
