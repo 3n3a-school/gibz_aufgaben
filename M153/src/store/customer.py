@@ -6,4 +6,7 @@ class Customer:
         self.db = DB()
     
     def add(self, customer):
-        self.db.insert_record("customers", customer)
+        return self.db.insert_record("customers", customer)
+
+    def getall(self):
+        return self.db.get_record("contact_persons")

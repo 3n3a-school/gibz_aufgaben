@@ -1,7 +1,8 @@
 from distutils.log import error
 from pathlib import Path
+from typing import Dict
 import psycopg2
-from psycopg2.sql import SQL, Identifier, Literal
+from psycopg2.sql import SQL, Identifier, Literal, Composable
 import os
 
 class DB:
@@ -12,12 +13,13 @@ class DB:
             password=password,
             host=host
         )
-        self.table_script = Path(__file__, create_script)
+        self.table_script = create_script
         self.connect()
 
     def execute(self, sql):
         try:
             self.cursor.execute(sql)
+            self.conn.commit()
             results = self.cursor.fetchall()
             return results
         except psycopg2.Error as e:
@@ -33,18 +35,28 @@ class DB:
             with open(self.table_script, 'r') as f:
                 sql = f.read()
             self.cursor.execute(sql)
-            self.cursor.commit()
+            self.conn.commit()
         except psycopg2.Error as e:
             error(e)
 
-    def insert_record(self, table, values):
+    def insert_record(self, table, columns, values):
         try:
-            sql = SQL("INSERT INTO {} VALUES (%s)".format(Identifier(table)), values)
+            columns = ", ".join(columns)
+
+            values_string = []
+            for value in values:
+                if "(" in value:
+                    values_string.append(value)
+                else:
+                    values_string.append(f"'{value}'")
+            values = ", ".join(values_string)
+
+            sql = SQL(f"INSERT INTO {{}} ({columns}) VALUES ({values})").format(Identifier(table))
             self.cursor.execute(sql)
-            self.cursor.commit()
+            self.conn.commit()
             return True
         except psycopg2.Error as e:
-            return e
+            print(f"Error in insert record {e}")
 
     def update_record(self, table, values: Dict, id):
         try:
@@ -54,13 +66,13 @@ class DB:
 
             values = ", ".join(key_value)
 
-            sql = SQL("UPDATE {} SET {} WHERE id = 1").format(
+            sql = SQL("UPDATE {} SET {} WHERE id = %s").format(
                 Identifier(table),
                 Literal(values)
             )
             print(self.cursor.mogrify(sql))
-            self.cursor.execute(sql)
-            self.cursor.commit()
+            self.cursor.execute(sql, [id])
+            self.conn.commit()
             return True
         except psycopg2.Error as e:
             return e
