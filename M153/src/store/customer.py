@@ -5,4 +5,5 @@ class Customer:
     def __init__(self) -> None:
         self.db = DB()
     
-    def add(self, ):
+    def add(self, customer):
+        self.db.insert_record("customers", customer)
